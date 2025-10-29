@@ -1,11 +1,23 @@
 import React, { useState } from 'react';
 
 const Connect = () => {
+    const [formData, setFormData] = useState({
+        name: '',
+        email: '',
+        program: '',
+        year: '',
+        goal: '',
+        message: ''
+    });
     const [selectedInterests, setSelectedInterests] = useState([]);
 
     const handleSubmit = (e) => {
         e.preventDefault();
         alert('Form submitted! We will help you find connections. (This is a demo)');
+        const fullSubmission = { ...formData, interests: selectedInterests };
+        console.log('Form Submitted:', fullSubmission);
+        alert('Form submitted! Check the console for the data. (This is a demo)');
+        // In a real app, you would send `fullSubmission` to your API here.
     };
 
     const handleInterestClick = (interest) => {
@@ -16,6 +28,11 @@ const Connect = () => {
                 return [...prevInterests, interest];
             }
         });
+    };
+
+    const handleChange = (e) => {
+        const { id, value } = e.target;
+        setFormData(prevData => ({ ...prevData, [id]: value }));
     };
 
     return (
@@ -31,10 +48,28 @@ const Connect = () => {
                             <div className="form-group">
                                 <label className="form-label" htmlFor="name">Full Name</label>
                                 <input type="text" className="form-control" id="name" placeholder="Enter your full name" required />
+                                <input
+                                    type="text"
+                                    className="form-control"
+                                    id="name"
+                                    placeholder="Enter your full name"
+                                    value={formData.name}
+                                    onChange={handleChange}
+                                    required
+                                />
                             </div>
                             <div className="form-group">
                                 <label className="form-label" htmlFor="email">University Email</label>
                                 <input type="email" className="form-control" id="email" placeholder="your.name@chitkara.edu.in" required />
+                                <input
+                                    type="email"
+                                    className="form-control"
+                                    id="email"
+                                    placeholder="your.name@chitkara.edu.in"
+                                    value={formData.email}
+                                    onChange={handleChange}
+                                    required
+                                />
                             </div>
                         </div>
 
@@ -42,6 +77,7 @@ const Connect = () => {
                             <div className="form-group">
                                 <label className="form-label" htmlFor="program">Program/Course</label>
                                 <select className="form-control" id="program" required>
+                                <select className="form-control" id="program" value={formData.program} onChange={handleChange} required>
                                     <option value="">Select your program</option>
                                     <option value="btech">B.Tech</option>
                                     <option value="bba">BBA</option>
@@ -53,6 +89,7 @@ const Connect = () => {
                             <div className="form-group">
                                 <label className="form-label" htmlFor="year">Year of Study</label>
                                 <select className="form-control" id="year" required>
+                                <select className="form-control" id="year" value={formData.year} onChange={handleChange} required>
                                     <option value="">Select your year</option>
                                     <option value="1">1st Year</option>
                                     <option value="2">2nd Year</option>
@@ -85,6 +122,7 @@ const Connect = () => {
                         <div className="form-group">
                             <label className="form-label" htmlFor="goal">Connection Goal</label>
                             <select className="form-control" id="goal" required>
+                            <select className="form-control" id="goal" value={formData.goal} onChange={handleChange} required>
                                 <option value="">What are you looking for?</option>
                                 <option value="project">Project Collaboration</option>
                                 <option value="study">Study Group</option>
@@ -98,6 +136,13 @@ const Connect = () => {
                             <label className="form-label" htmlFor="message">Tell us more about what you're looking for</label>
                             <textarea className="form-control" id="message" rows="4"
                                 placeholder="Describe your interests, goals, and what kind of connections you're hoping to make..."></textarea>
+                            <textarea
+                                className="form-control"
+                                id="message"
+                                rows="4"
+                                placeholder="Describe your interests, goals, and what kind of connections you're hoping to make..."
+                                value={formData.message}
+                                onChange={handleChange}></textarea>
                             <div className="char-count"></div>
                         </div>
 
