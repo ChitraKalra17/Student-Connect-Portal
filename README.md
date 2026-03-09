@@ -72,14 +72,10 @@ student-connect-portal/
 
 Follow these steps to run the project locally:
 
-1. Clone the repository
-git clone https://github.com/your-username/student-connect-portal.git
-2. Navigate to the project folder
-cd student-connect-portal
-3. Install dependencies
-npm install
-4. Start the development server
-npm start
+1. Clone the repository: git clone https://github.com/ChitraKalra17/Student-Connect-Portal.git
+2. Navigate to the project folder: cd student-connect-portal
+3. Install dependencies: npm install
+4. Start the development server: npm start
 The application will run on: http://localhost:3000
 
 ---
